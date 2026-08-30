@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">BioLit</string>
+    <string name="process_text_label">Search BioLib</string>
+
+    <string-array name="search_area_labels">
+        <item>Taxony (čeština)</item>
+        <item>Taxony (všechny jazyky)</item>
+        <item>Obrázky</item>
+        <item>Odkazy a literatura</item>
+        <item>Termíny</item>
+        <item>Termíny (všechny jazyky)</item>
+        <item>Biotopy</item>
+        <item>Lokality</item>
+        <item>Hledat všude</item>
+    </string-array>
+
+    <string-array name="search_area_values">
+        <item>1</item>
+        <item>6</item>
+        <item>2</item>
+        <item>3</item>
+        <item>5</item>
+        <item>9</item>
+        <item>7</item>
+        <item>8</item>
+        <item>100</item>
+    </string-array>
+</resources>
