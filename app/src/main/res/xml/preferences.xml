@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ListPreference
+        android:defaultValue="1"
+        android:entries="@array/search_area_labels"
+        android:entryValues="@array/search_area_values"
+        android:key="search_area"
+        android:summary="%s"
+        android:title="BioLib search type" />
+
+</PreferenceScreen>
