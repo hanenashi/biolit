@@ -161,20 +161,22 @@ The current endpoint is the Czech BioLib interface. Search mode controls what Bi
 
 Before calling v1 done:
 
-- [ ] Project builds from a clean checkout.
+- [x] Project builds from a clean checkout.
 - [ ] Debug APK installs on current Android.
 - [ ] Selecting ordinary text exposes **Search BioLib** in the selection menu / overflow.
-- [ ] Default install searches `searcharea=1`.
-- [ ] Query text is preserved correctly, including spaces and non-ASCII characters.
-- [ ] Leading/trailing whitespace is removed.
-- [ ] Browser opens BioLib results directly.
-- [ ] No blank/intermediate BioLit activity flashes visibly during context search if avoidable.
-- [ ] Settings activity launches normally from the app icon.
-- [ ] Search type preference contains all known modes listed above.
-- [ ] Changing search type is respected on the very next search.
-- [ ] No unnecessary permissions.
-- [ ] No WebView, analytics, ads, account, database, or background service.
-- [ ] README briefly explains installation/use.
+- [x] Default install searches `searcharea=1`.
+- [x] Query text is preserved correctly, including spaces and non-ASCII characters.
+- [x] Leading/trailing whitespace is removed.
+- [x] Browser opens BioLib results directly.
+- [x] No blank/intermediate BioLit activity flashes visibly during context search if avoidable.
+- [x] Settings activity launches normally from the app icon.
+- [x] Search type preference contains all known modes listed above.
+- [x] Changing search type is respected on the very next search.
+- [x] No unnecessary permissions.
+- [x] No WebView, analytics, ads, account, database, or background service.
+- [x] README briefly explains installation/use.
+
+Alpha note: device validation is still pending for APK install and whether each host app exposes Android's `PROCESS_TEXT` menu item.
 
 ## Test cases
 

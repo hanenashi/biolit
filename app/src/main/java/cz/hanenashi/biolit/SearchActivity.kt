@@ -26,7 +26,7 @@ class SearchActivity : Activity() {
             val searchArea = prefs.getString(
                 SearchConfig.PREF_SEARCH_AREA,
                 SearchConfig.DEFAULT_SEARCH_AREA
-            ) ?: SearchConfig.DEFAULT_SEARCH_AREA
+            ).let(SearchConfig::normalizedSearchArea)
 
             val uri = Uri.parse(SearchConfig.SEARCH_URL)
                 .buildUpon()
