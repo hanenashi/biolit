@@ -16,8 +16,8 @@ android {
         applicationId = "cz.hanenashi.biolit"
         minSdk = 26
         targetSdk = 35
-        versionCode = 2
-        versionName = "0.1.1-alpha.2"
+        versionCode = 3
+        versionName = "0.1.2-alpha.3"
     }
 
     buildFeatures {

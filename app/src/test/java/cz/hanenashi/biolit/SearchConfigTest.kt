@@ -23,6 +23,7 @@ class SearchConfigTest {
     fun czechTaxaPresetUsesExecutedSearchParameters() {
         val parameters = SearchPreset.TAXA_CZECH.parameters.associate { it.name to it.value }
 
+        assertEquals("execute", parameters["action"])
         assertEquals("1", parameters["searchrecords"])
         assertEquals("1", parameters["searchvnames"])
         assertEquals("0", parameters["searchgallery"])
@@ -33,6 +34,6 @@ class SearchConfigTest {
         assertEquals("0", parameters["searchbiotops"])
         assertEquals("0", parameters["searchlocals"])
         assertEquals("4", parameters["searchtype"])
-        assertEquals(10, parameters.size)
+        assertEquals(11, parameters.size)
     }
 }

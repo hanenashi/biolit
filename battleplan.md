@@ -49,6 +49,7 @@ Current supported executed-search preset:
 ```text
 Taxony (čeština):
 string=<query>
+action=execute
 searchrecords=1
 searchvnames=1
 searchgallery=0

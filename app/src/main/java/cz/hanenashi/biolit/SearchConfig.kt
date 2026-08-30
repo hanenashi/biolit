@@ -24,6 +24,7 @@ enum class SearchPreset(
     TAXA_CZECH(
         preferenceValue = "taxa_czech",
         parameters = listOf(
+            SearchParameter("action", "execute"),
             SearchParameter("searchrecords", "1"),
             SearchParameter("searchvnames", "1"),
             SearchParameter("searchgallery", "0"),
