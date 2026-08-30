@@ -10,16 +10,12 @@ class SearchActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        if (intent.action != Intent.ACTION_PROCESS_TEXT) {
+        if (intent.action != Intent.ACTION_PROCESS_TEXT && intent.action != Intent.ACTION_SEND) {
             finish()
             return
         }
 
-        val selectedText = intent
-            .getCharSequenceExtra(Intent.EXTRA_PROCESS_TEXT)
-            ?.toString()
-            ?.trim()
-            .orEmpty()
+        val selectedText = textFromIntent(intent)
 
         if (selectedText.isNotEmpty()) {
             val prefs = PreferenceManager.getDefaultSharedPreferences(this)
@@ -40,5 +36,19 @@ class SearchActivity : Activity() {
         }
 
         finish()
+    }
+
+    private fun textFromIntent(intent: Intent): String {
+        val extra = when (intent.action) {
+            Intent.ACTION_PROCESS_TEXT -> Intent.EXTRA_PROCESS_TEXT
+            Intent.ACTION_SEND -> Intent.EXTRA_TEXT
+            else -> return ""
+        }
+
+        return intent
+            .getCharSequenceExtra(extra)
+            ?.toString()
+            ?.trim()
+            .orEmpty()
     }
 }

@@ -2,9 +2,9 @@
 
 ## Mission
 
-Build a tiny Android app whose main job is to add **Search BioLib** to Android's selected-text context menu via `Intent.ACTION_PROCESS_TEXT`.
+Build a tiny Android app whose main job is to add **🐞 BioLit** to Android's selected-text context menu via `Intent.ACTION_PROCESS_TEXT`.
 
-When the user selects text in Chrome, Firefox, a note app, etc. and chooses **Search BioLib**, BioLit should immediately open a BioLib.cz search for that selected text in the user's browser.
+When the user selects text in Chrome, Firefox, a note app, etc. and chooses **🐞 BioLit**, BioLit should immediately open a BioLib.cz search for that selected text in the user's browser.
 
 The launcher activity exists mainly for app settings. Avoid turning this into a browser, WebView wrapper, account system, or anything heroic. This app should remain boringly small.
 
@@ -37,33 +37,38 @@ Known `searcharea` values:
 | `8` | Lokality |
 | `100` | Hledat všude |
 
-The simple homepage `searcharea` URL only pre-fills the advanced search form in
-some cases. BioLit must use the executed advanced-search parameters instead.
+The simple homepage `searcharea` URL only pre-fills the advanced search form
+unless the hidden `action=execute` field is included. BioLit uses the verified
+simple search contract:
+
+```text
+string=<query>
+action=execute
+searcharea=<mode>
+```
 
 **Default must be Czech Taxony.**
 
 Do not hard-code the search mode inside `SearchActivity`; read it from app preferences. `SearchConfig` exposes supported presets and their exact GET parameters.
 
-Current supported executed-search preset:
+Supported simple executed-search presets:
 
 ```text
-Taxony (čeština):
-string=<query>
-action=execute
-searchrecords=1
-searchvnames=1
-searchgallery=0
-searchsources=0
-searcharticles=0
-searchdict=0
-searchsynonyms=1
-searchbiotops=0
-searchlocals=0
-searchtype=4
+Taxony (čeština): searcharea=1
+Taxony (všechny jazyky): searcharea=6
+Obrázky: searcharea=2
+Odkazy a literatura: searcharea=3
+Termíny: searcharea=5
+Termíny (všechny jazyky): searcharea=9
+Biotopy: searcharea=7
+Lokality: searcharea=8
+Hledat všude: searcharea=100
 ```
 
-Other BioLib modes should stay unavailable until their executed-search parameter
-sets are verified.
+The advanced form also exposes checkbox-level parameters such as
+`searchrecords`, `searchvnames`, `searchsynonyms`, and `searchtype`, but those
+should only become settings when the intended interaction with `searcharea`
+presets is tested.
 
 ## UX target
 
@@ -91,7 +96,7 @@ For v1, settings need only:
 
 Settings are local-only. No account, telemetry, analytics, cloud storage, permissions, or network API layer is needed.
 
-A future settings screen may include optional switches such as browser handling or Share-sheet support, so keep search preferences in one obvious place rather than scattering constants around activities.
+A future settings screen may include optional switches such as browser handling, so keep search preferences in one obvious place rather than scattering constants around activities.
 
 ## Architecture
 
@@ -104,6 +109,7 @@ MainActivity
 
 SearchActivity
   <- ACTION_PROCESS_TEXT
+  <- ACTION_SEND
   -> read saved search mode
   -> build BioLib URI
   -> ACTION_VIEW
@@ -123,6 +129,7 @@ No database, repository layer, dependency injection, networking library, Compose
 
 ```xml
 <action android:name="android.intent.action.PROCESS_TEXT" />
+<action android:name="android.intent.action.SEND" />
 <category android:name="android.intent.category.DEFAULT" />
 <data android:mimeType="text/plain" />
 ```
@@ -131,11 +138,12 @@ Read selected text from:
 
 ```kotlin
 Intent.EXTRA_PROCESS_TEXT
+Intent.EXTRA_TEXT
 ```
 
-Only treat `Intent.ACTION_PROCESS_TEXT` as a valid invocation. Ignore unexpected launches safely.
+Only treat `Intent.ACTION_PROCESS_TEXT` and `Intent.ACTION_SEND` as valid invocations. Ignore unexpected launches safely.
 
-The visible context-menu label should be short. Current target: **Search BioLib**.
+The visible context-menu label should be short. Current target: **🐞 BioLit**.
 
 Do not request Internet permission merely to open the browser: BioLit itself does not make network requests.
 
@@ -169,10 +177,6 @@ Do not add features merely to make the code look architecturally impressive.
 
 ## Possible v1.1 features — not required now
 
-### Android Share target
-
-Support selected/shared plain text from apps that do not expose `PROCESS_TEXT` by registering an `ACTION_SEND` `text/plain` activity. It should reuse the exact same search logic and preference.
-
 ### Multiple context-menu entries
 
 Android can technically expose separate activities such as Taxa / Images / Everywhere, but this would clutter the selection menu. Our chosen design is **one Search BioLib action + search type in app settings**. Keep that unless testing reveals a strong reason otherwise.
@@ -196,6 +200,7 @@ Before calling v1 done:
 - [x] Settings activity launches normally from the app icon.
 - [x] Search type preference contains all known modes listed above.
 - [x] Changing search type is respected on the very next search.
+- [x] Plain text shared through Android Share opens the same BioLib search.
 - [x] No unnecessary permissions.
 - [x] No WebView, analytics, ads, account, database, or background service.
 - [x] README briefly explains installation/use.

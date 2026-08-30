@@ -16,24 +16,29 @@ class SearchConfigTest {
         assertEquals(SearchConfig.DEFAULT_PRESET, SearchConfig.presetForPreferenceValue(null))
         assertEquals(SearchConfig.DEFAULT_PRESET, SearchConfig.presetForPreferenceValue(""))
         assertEquals(SearchConfig.DEFAULT_PRESET, SearchConfig.presetForPreferenceValue("bogus"))
-        assertEquals(SearchConfig.DEFAULT_PRESET, SearchConfig.presetForPreferenceValue("1"))
+        assertEquals(SearchConfig.DEFAULT_PRESET, SearchConfig.presetForPreferenceValue("taxa_czech"))
     }
 
     @Test
-    fun czechTaxaPresetUsesExecutedSearchParameters() {
-        val parameters = SearchPreset.TAXA_CZECH.parameters.associate { it.name to it.value }
+    fun presetsUseExecutedSearchAreaParameters() {
+        val expectedSearchAreas = mapOf(
+            SearchPreset.TAXA_CZECH to "1",
+            SearchPreset.TAXA_ALL_LANGUAGES to "6",
+            SearchPreset.IMAGES to "2",
+            SearchPreset.LINKS_AND_LITERATURE to "3",
+            SearchPreset.TERMS to "5",
+            SearchPreset.TERMS_ALL_LANGUAGES to "9",
+            SearchPreset.BIOTOPES to "7",
+            SearchPreset.LOCALITIES to "8",
+            SearchPreset.EVERYWHERE to "100"
+        )
 
-        assertEquals("execute", parameters["action"])
-        assertEquals("1", parameters["searchrecords"])
-        assertEquals("1", parameters["searchvnames"])
-        assertEquals("0", parameters["searchgallery"])
-        assertEquals("0", parameters["searchsources"])
-        assertEquals("0", parameters["searcharticles"])
-        assertEquals("0", parameters["searchdict"])
-        assertEquals("1", parameters["searchsynonyms"])
-        assertEquals("0", parameters["searchbiotops"])
-        assertEquals("0", parameters["searchlocals"])
-        assertEquals("4", parameters["searchtype"])
-        assertEquals(11, parameters.size)
+        expectedSearchAreas.forEach { (preset, searchArea) ->
+            val parameters = preset.parameters.associate { it.name to it.value }
+
+            assertEquals("execute", parameters["action"])
+            assertEquals(searchArea, parameters["searcharea"])
+            assertEquals(2, parameters.size)
+        }
     }
 }

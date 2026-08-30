@@ -8,7 +8,7 @@ object SearchConfig {
     val DEFAULT_PRESET = SearchPreset.TAXA_CZECH
 
     fun presetForPreferenceValue(value: String?): SearchPreset {
-        return SearchPreset.entries.firstOrNull { it.preferenceValue == value } ?: DEFAULT_PRESET
+        return SearchPreset.entries.firstOrNull { it.matchesPreferenceValue(value) } ?: DEFAULT_PRESET
     }
 }
 
@@ -19,22 +19,30 @@ data class SearchParameter(
 
 enum class SearchPreset(
     val preferenceValue: String,
-    val parameters: List<SearchParameter>
+    val searchArea: String,
+    private val legacyPreferenceValues: Set<String> = emptySet()
 ) {
     TAXA_CZECH(
-        preferenceValue = "taxa_czech",
-        parameters = listOf(
+        preferenceValue = "1",
+        searchArea = "1",
+        legacyPreferenceValues = setOf("taxa_czech")
+    ),
+    TAXA_ALL_LANGUAGES("6", "6"),
+    IMAGES("2", "2"),
+    LINKS_AND_LITERATURE("3", "3"),
+    TERMS("5", "5"),
+    TERMS_ALL_LANGUAGES("9", "9"),
+    BIOTOPES("7", "7"),
+    LOCALITIES("8", "8"),
+    EVERYWHERE("100", "100");
+
+    val parameters: List<SearchParameter>
+        get() = listOf(
             SearchParameter("action", "execute"),
-            SearchParameter("searchrecords", "1"),
-            SearchParameter("searchvnames", "1"),
-            SearchParameter("searchgallery", "0"),
-            SearchParameter("searchsources", "0"),
-            SearchParameter("searcharticles", "0"),
-            SearchParameter("searchdict", "0"),
-            SearchParameter("searchsynonyms", "1"),
-            SearchParameter("searchbiotops", "0"),
-            SearchParameter("searchlocals", "0"),
-            SearchParameter("searchtype", "4")
+            SearchParameter("searcharea", searchArea)
         )
-    )
+
+    fun matchesPreferenceValue(value: String?): Boolean {
+        return value == preferenceValue || value in legacyPreferenceValues
+    }
 }

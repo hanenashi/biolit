@@ -1,15 +1,15 @@
 # BioLit
 
-Tiny Android helper that adds **Search BioLib** to Android's selected-text context menu.
+Tiny Android helper that adds **🐞 BioLit** to Android's selected-text context menu and plain-text share sheet.
 
-Select text in an app, choose **Search BioLib**, and BioLit opens a BioLib.cz search in the browser.
+Select or share text in an app, choose **🐞 BioLit**, and BioLit opens a BioLib.cz search in the browser.
 
 The launcher activity is intentionally just a settings screen. The selected search type is stored locally and used by the `PROCESS_TEXT` activity. Settings also show the installed app version for alpha testing.
 
 ## Current default
 
 - Search type: **Taxony (čeština)**
-- BioLib parameters: `action=execute` plus advanced-search parameters for scientific names, Czech common names, and synonyms
+- BioLib parameters: `action=execute&searcharea=1`
 - Endpoint: `https://www.biolib.cz/cz/formsearch/`
 
 See [`battleplan.md`](battleplan.md) for the implementation plan and acceptance criteria.
