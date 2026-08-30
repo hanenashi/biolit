@@ -23,18 +23,20 @@ class SearchActivity : Activity() {
 
         if (selectedText.isNotEmpty()) {
             val prefs = PreferenceManager.getDefaultSharedPreferences(this)
-            val searchArea = prefs.getString(
+            val preset = prefs.getString(
                 SearchConfig.PREF_SEARCH_AREA,
-                SearchConfig.DEFAULT_SEARCH_AREA
-            ).let(SearchConfig::normalizedSearchArea)
+                SearchConfig.DEFAULT_PRESET.preferenceValue
+            ).let(SearchConfig::presetForPreferenceValue)
 
-            val uri = Uri.parse(SearchConfig.SEARCH_URL)
+            val uriBuilder = Uri.parse(SearchConfig.SEARCH_URL)
                 .buildUpon()
-                .appendQueryParameter("searcharea", searchArea)
                 .appendQueryParameter("string", selectedText)
-                .build()
 
-            startActivity(Intent(Intent.ACTION_VIEW, uri))
+            preset.parameters.forEach { parameter ->
+                uriBuilder.appendQueryParameter(parameter.name, parameter.value)
+            }
+
+            startActivity(Intent(Intent.ACTION_VIEW, uriBuilder.build()))
         }
 
         finish()

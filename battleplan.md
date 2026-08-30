@@ -16,7 +16,7 @@ BioLib homepage search submits a GET request to:
 https://www.biolib.cz/cz/formsearch/
 ```
 
-Parameters:
+The simple homepage search submits these parameters:
 
 ```text
 searcharea=<mode>
@@ -37,9 +37,32 @@ Known `searcharea` values:
 | `8` | Lokality |
 | `100` | Hledat všude |
 
-**Default must be `1` — Czech Taxony.**
+The simple homepage `searcharea` URL only pre-fills the advanced search form in
+some cases. BioLit must use the executed advanced-search parameters instead.
 
-Do not hard-code the search mode inside `SearchActivity`; read it from app preferences. The current skeleton already exposes the values through `SearchConfig` and a `ListPreference`.
+**Default must be Czech Taxony.**
+
+Do not hard-code the search mode inside `SearchActivity`; read it from app preferences. `SearchConfig` exposes supported presets and their exact GET parameters.
+
+Current supported executed-search preset:
+
+```text
+Taxony (čeština):
+string=<query>
+searchrecords=1
+searchvnames=1
+searchgallery=0
+searchsources=0
+searcharticles=0
+searchdict=0
+searchsynonyms=1
+searchbiotops=0
+searchlocals=0
+searchtype=4
+```
+
+Other BioLib modes should stay unavailable until their executed-search parameter
+sets are verified.
 
 ## UX target
 
@@ -164,7 +187,7 @@ Before calling v1 done:
 - [x] Project builds from a clean checkout.
 - [ ] Debug APK installs on current Android.
 - [ ] Selecting ordinary text exposes **Search BioLib** in the selection menu / overflow.
-- [x] Default install searches `searcharea=1`.
+- [x] Default install uses the Czech taxa executed-search preset.
 - [x] Query text is preserved correctly, including spaces and non-ASCII characters.
 - [x] Leading/trailing whitespace is removed.
 - [x] Browser opens BioLib results directly.

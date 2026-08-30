@@ -9,7 +9,7 @@ The launcher activity is intentionally just a settings screen. The selected sear
 ## Current default
 
 - Search type: **Taxony (čeština)**
-- BioLib parameter: `searcharea=1`
+- BioLib parameters: executed advanced-search parameters for scientific names, Czech common names, and synonyms
 - Endpoint: `https://www.biolib.cz/cz/formsearch/`
 
 See [`battleplan.md`](battleplan.md) for the implementation plan and acceptance criteria.

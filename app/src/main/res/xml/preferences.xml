@@ -2,7 +2,7 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
     <ListPreference
-        android:defaultValue="1"
+        android:defaultValue="taxa_czech"
         android:entries="@array/search_area_labels"
         android:entryValues="@array/search_area_values"
         android:key="search_area"
