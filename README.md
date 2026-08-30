@@ -2,6 +2,9 @@
 
 Tiny Android helper that adds **🐞 BioLit** to Android's selected-text context menu and plain-text share sheet.
 
+BioLib mobile CSS userscript install:
+https://raw.githubusercontent.com/hanenashi/biolit/main/web/biolit.user.js
+
 Select or share text in an app, choose **🐞 BioLit**, and BioLit opens a BioLib.cz search in the browser.
 
 The launcher activity is intentionally just a settings screen. The selected search type is stored locally and used by the `PROCESS_TEXT` activity. Settings also show the installed app version for alpha testing.
