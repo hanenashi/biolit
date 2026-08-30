@@ -168,6 +168,7 @@
   .clscreen {
     display: block;
     padding: 0.6rem;
+    overflow-x: hidden;
   }
 
   #leftmenu {
@@ -210,13 +211,44 @@
   .item-list-box,
   .realm-1,
   .item-list-item,
+  .fl,
+  .fr,
+  .extsource,
+  .clbar3,
+  .clbarbody3,
   .clbarl2,
   .clbarbodyl2,
-  .clform {
+  .clform,
+  .fset-like {
     width: 100%;
     max-width: 100%;
     min-width: 0;
     box-sizing: border-box;
+    overflow-wrap: anywhere;
+  }
+
+  .fl,
+  .fr,
+  .extsource {
+    float: none;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .clbar3,
+  .clbarbody3,
+  .clbarl2,
+  .clbarbodyl2 {
+    overflow-x: hidden;
+  }
+
+  .clbar3 *,
+  .clbarbody3 *,
+  .clbarl2 *,
+  .clbarbodyl2 * {
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow-wrap: anywhere;
   }
 
   .item-list-item {
@@ -238,14 +270,19 @@
   }
 
   .clform,
-  .clbarbodyl2 {
+  .clbarbodyl2,
+  .clbarbody3 {
     padding: 0.55rem;
   }
 
   .clform input[type="text"],
   .clform select,
   .clform input[type="submit"],
-  .clform textarea {
+  .clform textarea,
+  .fset-like input[type="text"],
+  .fset-like select,
+  .fset-like input[type="submit"],
+  .fset-like textarea {
     width: 100%;
     max-width: 100%;
     min-height: 2.6rem;
