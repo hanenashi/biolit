@@ -25,3 +25,8 @@ The debug APK is written to:
 ```text
 app/build/outputs/apk/debug/app-debug.apk
 ```
+
+## BioLib Mobile CSS Experiment
+
+`biolib-stylebot-mobile.css` is a first-pass Stylebot stylesheet for testing
+BioLib.cz mobile readability in Kiwi Browser.
