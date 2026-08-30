@@ -1,0 +1,311 @@
+/*
+ * BioLib responsive/mobile CSS draft.
+ *
+ * Production requirement:
+ *   <meta name="viewport" content="width=device-width, initial-scale=1">
+ *
+ * The companion userscript only injects the missing viewport meta and loads this
+ * stylesheet while testing. These rules should remain suitable for site-side
+ * integration.
+ */
+
+@media screen and (max-width: 760px) {
+  html {
+    font-size: 16px;
+  }
+
+  body {
+    min-width: 0;
+    margin: 0;
+    line-height: 1.45;
+    overflow-x: hidden;
+  }
+
+  body,
+  input,
+  select,
+  textarea,
+  button {
+    font-family: Verdana, Arial, sans-serif;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  #displayarea {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  #topbar {
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    box-sizing: border-box;
+    padding: 0.5rem 0.6rem;
+  }
+
+  #bllogo {
+    position: static;
+    float: none;
+    width: 100%;
+    height: auto;
+    margin: 0 0 0.45rem;
+    text-align: left;
+  }
+
+  #bllogo img {
+    width: auto;
+    max-width: 9rem;
+  }
+
+  .clsysmenu,
+  #lasttaxontoolbar,
+  #toolbar,
+  .clinfobarbody {
+    display: none;
+  }
+
+  #searchmenu {
+    position: static;
+    float: none;
+    width: 100%;
+    height: auto;
+    box-sizing: border-box;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    text-align: left;
+  }
+
+  #sform,
+  #sform > div {
+    display: block;
+    width: 100%;
+    height: auto;
+    text-align: left;
+  }
+
+  #sform a {
+    display: inline-block;
+    margin: 0 0 0.25rem;
+    font-weight: 700;
+  }
+
+  #sform select,
+  #sform input[type="text"],
+  #sform input[type="submit"],
+  #sform .clbutton {
+    width: 100%;
+    max-width: 100%;
+    min-height: 2.75rem;
+    box-sizing: border-box;
+    margin: 0.15rem 0;
+    padding: 0.45rem 0.55rem;
+    font-size: 1rem;
+  }
+
+  #topmenu,
+  .cltopmenu {
+    display: block;
+    white-space: nowrap;
+    width: 100%;
+    height: auto;
+    box-sizing: border-box;
+    overflow-x: auto;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding: 0.35rem 0.6rem 0.5rem;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  #topmenu .menuitem,
+  .cltopmenu .menuitem {
+    float: none;
+    width: auto;
+    height: auto;
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+  }
+
+  #topmenu a,
+  .cltopmenu a {
+    display: inline-block;
+    padding: 0.4rem 0.55rem;
+    border-radius: 0.35rem;
+    background: rgba(255, 255, 255, 0.35);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  #screen,
+  .clscreen,
+  #leftmenu,
+  #hp-main,
+  #hp-right,
+  .half,
+  .third,
+  .twothirds,
+  .folder-l,
+  .folder-r,
+  .image-l,
+  .image-c,
+  .image-r {
+    float: none;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  #screen,
+  .clscreen {
+    display: block;
+    padding: 0.6rem;
+  }
+
+  #leftmenu {
+    display: block;
+    margin-top: 0.8rem;
+    padding: 0 0.6rem 0.7rem;
+  }
+
+  h1 {
+    margin: 0.2rem 0 0.75rem;
+    font-size: 1.55rem;
+    line-height: 1.18;
+  }
+
+  h2 {
+    margin: 1rem 0 0.45rem;
+    font-size: 1.18rem;
+    line-height: 1.25;
+  }
+
+  h3 {
+    font-size: 1rem;
+    line-height: 1.25;
+  }
+
+  p,
+  li,
+  td,
+  th,
+  .item-list-item,
+  .clbarbodyl2,
+  .clform {
+    font-size: 0.95rem;
+  }
+
+  a {
+    overflow-wrap: anywhere;
+  }
+
+  .item-list-box,
+  .realm-1,
+  .item-list-item,
+  .clbarl2,
+  .clbarbodyl2,
+  .clform {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+
+  .item-list-item {
+    min-height: 2.5rem;
+    padding: 0.5rem 0.55rem;
+    line-height: 1.35;
+  }
+
+  .item-list-item a {
+    font-weight: 700;
+  }
+
+  .clnextprev,
+  .center,
+  p.center {
+    width: 100%;
+    text-align: left;
+    font-size: 0.85rem;
+  }
+
+  .clform,
+  .clbarbodyl2 {
+    padding: 0.55rem;
+  }
+
+  .clform input[type="text"],
+  .clform select,
+  .clform input[type="submit"],
+  .clform textarea {
+    width: 100%;
+    max-width: 100%;
+    min-height: 2.6rem;
+    box-sizing: border-box;
+    margin: 0.2rem 0 0.45rem;
+    padding: 0.45rem 0.55rem;
+    font-size: 1rem;
+  }
+
+  .clform input[type="checkbox"],
+  .clform input[type="radio"] {
+    width: 1rem;
+    height: 1rem;
+    margin-right: 0.35rem;
+  }
+
+  table {
+    max-width: 100%;
+  }
+
+  #footbar {
+    position: static;
+    clear: both;
+    width: 100%;
+    height: auto;
+    box-sizing: border-box;
+    padding: 0.45rem 0.6rem;
+  }
+
+  #pagecleaner {
+    display: none;
+  }
+
+  #consentBox,
+  .consent-box {
+    width: auto !important;
+    max-width: calc(100% - 1rem) !important;
+    box-sizing: border-box !important;
+    left: 0.5rem !important;
+    right: 0.5rem !important;
+    margin-left: 0 !important;
+    transform: none !important;
+  }
+
+  body.hp #hp-div,
+  body.hp #hp-news,
+  body.hp #hp-main,
+  body.hp #hp-right,
+  body.hp #leftmenu {
+    float: none;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  body.hp #hp-main,
+  body.hp #hp-right {
+    padding: 0;
+  }
+}
